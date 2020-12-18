@@ -131,9 +131,38 @@ target patch of the reference image. Here are the resulting images: </p>
 
 <h3>Bells & Whistles: Iterative Texture Transfer</h3>
 <hr>
-<p>For texture transfer, we use our <code>quilt_cut</code> function to guide the texture cuts by using
-a reference image. We use an alpha value to multiply the weight of the cost between SSD of the patch and the
-target patch of the reference image. Here are the resulting images: </p>
+<p>This portion consisted of iteratively running through our previous algorithm.
+  We were able to achieve better results after running multiple times. Here are the outputs:</p>
+<div class="row">
+  <figure>
+    <img src="./image_quilting/iterative2.png" height=200/><figcaption>Target Object</figcaption>
+  </figure>
+  <figure>
+    <img src="./image_quilting/iterative1.png"  height=200/><figcaption>Desired Texture</figcaption>
+  </figure>
+  <figure>
+    <img src="./image_quilting/iterative3.png"  height=200/><figcaption>Texture Transfer</figcaption>
+  </figure>
+</div>
+<div class="row">
+  <figure>
+    <img src="./image_quilting/namdosan2.png" height=200/><figcaption>Regular Texture Transfer</figcaption>
+  </figure>
+  <figure>
+    <img src="./image_quilting/iterativenamdosan.png"  height=200/><figcaption>Iterative Texture Transfer</figcaption>
+  </figure>
+
+</div>
+
+<div class="row">
+  <figure>
+    <img src="./image_quilting/mrhan2.png" height=200/><figcaption>Regular Texture Transfer</figcaption>
+  </figure>
+  <figure>
+    <img src="./image_quilting/iterativemrhan.png"  height=200/><figcaption>Iterative Texture Transfer</figcaption>
+  </figure>
+
+</div>
 
 <div class="row">
 <button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>

@@ -15,8 +15,12 @@
       <button type="button" name="button"><a href="./gradient.html">Gradient Domain Fusion</a></button>
     </div>
     <h2>Gradient Domain Fusion</h2>
+
     <p><b>Overview:</b> This project looks into <em>gradient-domain processing</em> with Poisson blending, in
-      order to seamlessly integrate one object into another image.</p>
+      order to seamlessly integrate one object into another image. Below we demonstrate this process on a penguin image
+    integrated into a snowy background.</p>
+      <center> <img src="./gradient-domain/pBlendMG.jpg" alt="" width=100%> </center>
+
 <hr>
     <h4>Toy Problem</h4>
     <p>The toy problem consists of computing the x and y gradients of an image and reconstructing
@@ -48,6 +52,8 @@
       </figure>
     </div>
     </center>
+
+
   <h4>Poisson Blending</h4>
   <p>Our poisson blending procedure is as follows:</p>
   <ol>
@@ -61,14 +67,117 @@
     <li>Copy the solved value into the target image</li>
 
   </ol>
+  <div class="row">
+      <figure>
+        <img src="./gradient-domain/otherguy.jpg" alt="" height=170><figcaption>Target Image</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/obama2.jpg" alt="" height=170><figcaption>Source Image Translated</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/obamamask.jpg" alt="" height=170><figcaption>Mask</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/obamaguyreg.jpg" alt="" height=170><figcaption>Blended Output</figcaption>
+      </figure>
+    </div>
+
+
+    <div class="row">
+        <figure>
+          <img src="./gradient-domain/snow.jpg" alt="" height=170><figcaption>Target Image</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/penguin.jpg" alt="" height=170><figcaption>Source Image Translated</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/penguinmask.jpg" alt="" height=170><figcaption>Mask</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/pBlend.jpg" alt="" height=170><figcaption>Blended Output</figcaption>
+        </figure>
+      </div>
+
+      <div class="row">
+          <figure>
+            <img src="./gradient-domain/ocean.jpg" alt="" height=170><figcaption>Target Image</figcaption>
+          </figure>
+          <figure>
+            <img src="./gradient-domain/sealc.jpg" alt="" height=170><figcaption>Source Image Translated</figcaption>
+          </figure>
+          <figure>
+            <img src="./gradient-domain/sealMASK.jpg" alt="" height=170><figcaption>Mask</figcaption>
+          </figure>
+          <figure>
+            <img src="./gradient-domain/sealBlend.jpg" alt="" height=170><figcaption>Blended Output</figcaption>
+          </figure>
+        </div>
+    <p><b>Failed Case:</b> <br>The photos above were able to work well because the original background of the source objects were considerably
+    similar to the background of the target image. Here we have a failed case with part of the source object not matching the background
+    of the target image background. </p>
+    <div class="row">
+        <figure>
+          <img src="./gradient-domain/snow.jpg" alt="" height=170><figcaption>Target Image</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/pc1.jpg" alt="" height=170><figcaption>Source Image</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/pc1MASK.jpg" alt="" height=170><figcaption>Mask</figcaption>
+        </figure>
+        <figure>
+          <img src="./gradient-domain/pc1Blend.jpg" alt="" height=170><figcaption>Blended Output</figcaption>
+        </figure>
+      </div>
 
   <h4>Bells & Whistles: Mixed Gradient</h3>
   <hr>
 <p>We implemented mixed gradient to improve blending by doing a similar procedure as Poisson blending
    using the following formula</p>
    <img src="./gradient-domain/mixed_grad_eq.png" alt="" height=70>
+   <p>Overall, this helped make the results look more realistic.</p>
+   <div class="row">
 
+       <figure>
+         <img src="./gradient-domain/obamaguyreg.jpg" alt="" height=280><figcaption>Poisson Blending</figcaption>
+       </figure>
+       <figure>
+         <img src="./gradient-domain/obamaguygradient.jpg" alt="" height=280><figcaption>Mixed Gradient</figcaption>
+       </figure>
 
+     </div>
+     <div class="row">
+
+         <figure>
+           <img src="./gradient-domain/pBlend.jpg" alt="" height=210><figcaption>Poisson Blending</figcaption>
+         </figure>
+         <figure>
+           <img src="./gradient-domain/pBlendMG.jpg" alt="" height=210><figcaption>Mixed Gradient</figcaption>
+         </figure>
+
+       </div>
+       <div class="row">
+
+           <figure>
+             <img src="./gradient-domain/sealBlend.jpg" alt="" height=280><figcaption>Poisson Blending</figcaption>
+           </figure>
+           <figure>
+             <img src="./gradient-domain/sealBlendMG.jpg" alt="" height=280><figcaption>Mixed Gradient</figcaption>
+           </figure>
+
+         </div>
+
+      <p><b>Failed Case:</b> Same problem as before, the blending is not believable with the different backgrounds.</p>
+      <div class="row">
+
+          <figure>
+            <img src="./gradient-domain/pc1Blend.jpg" alt="" height=280><figcaption>Poisson Blending</figcaption>
+          </figure>
+          <figure>
+            <img src="./gradient-domain/pc1BlendMG.jpg" alt="" height=280><figcaption>Mixed Gradient</figcaption>
+          </figure>
+
+        </div>
    <h4>Bells & Whistles: Color2Gray</h3>
    <hr>
  <p>The concept of Color2Gray was to improve grayscale contrast since converting an image to gray can lose
@@ -91,6 +200,32 @@ as Poisson blending but taking into account these parameters. Because it took a 
     </figure>
 
   </div>
+
+<div class="row">
+    <figure>
+      <img src="./gradient-domain/heart3.jpg" alt="" height=170><figcaption>Color blind test (color)</figcaption>
+    </figure>
+    <figure>
+      <img src="./gradient-domain/heart2.jpg" alt="" height=170><figcaption>Color blind test (grayscale)</figcaption>
+    </figure>
+    <figure>
+      <img src="./gradient-domain/heart1.jpg" alt="" height=170><figcaption>Color2Gray Output</figcaption>
+    </figure>
+
+  </div>
+
+  <div class="row">
+      <figure>
+        <img src="./gradient-domain/kang1.jpg" alt="" height=170><figcaption>Color blind test (color)</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/kang2.jpg" alt="" height=170><figcaption>Color blind test (grayscale)</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/kang3.jpg" alt="" height=170><figcaption>Color2Gray Output</figcaption>
+      </figure>
+
+    </div>
 
 
   <div class="row">
