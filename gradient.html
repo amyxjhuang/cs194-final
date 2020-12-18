@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="stylesheet.css" rel=stylesheet>
+
+    <title>CS194 Final Project</title>
+  </head>
+  <body>
+    <h1>CS194 Final Project</h1>
+    <p>Intro to Computer Vision & Computational Photography: <b>Anderson Lam, Amy Huang</b></p>
+    <div class="row">
+      <button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>
+      <button type="button" name="button"><a href="./image_quilting.html">Image Quilting</a></button>
+      <button type="button" name="button"><a href="./gradient.html">Gradient Domain Fusion</a></button>
+    </div>
+    <h2>Gradient Domain Fusion</h2>
+    <p><b>Overview:</b> This project looks into <em>gradient-domain processing</em> with Poisson blending, in
+      order to seamlessly integrate one object into another image.</p>
+<hr>
+    <h4>Toy Problem</h4>
+    <p>The toy problem consists of computing the x and y gradients of an image and reconstructing
+      that image. We have 2 objectives:
+      <ul>
+        <li><code>minimize ( v(x+1,y)-v(x,y) - (s(x+1,y)-s(x,y)) )^2 </code> the x-gradients of v should closely match the x-gradients of s</li>
+        <li><code>minimize ( v(x,y+1)-v(x,y) - (s(x,y+1)-s(x,y)) )^2 </code>the y-gradients of v should closely match the y-gradients of s</li>
+      </ul>
+      After doing so, our output image looks like this:
+    </p>
+    <center>
+    <div class="row">
+      <figure>
+        <img src="./gradient-domain/toyref.png" height=200/><figcaption>Reference</figcaption>
+      </figure>
+      <figure>
+        <img src="./gradient-domain/toyprob.png"  height=200/><figcaption>Reconstructed</figcaption>
+      </figure>
+
+    </div>
+    </center>
+  <h4>Poisson Blending</h4>
+  <p>Our poisson blending procedure is as follows:</p>
+  <ol>
+    <li>
+      Select source and target boundaries and translate the object to the correct
+      location in the target.
+    </li>
+    <li> Use the following formula for finding blending constraints:
+      <img src="./gradient-domain/poissonblend_eq.png" height=70/>
+    </li>
+    <li>Copy the solved value into the target image</li>
+
+  </ol>
+
+  <h4>Bells & Whistles: Mixed Gradient</h3>
+  <hr>
+<p>We implemented mixed gradient to improve blending by doing a similar procedure as Poisson blending
+   using the following formula</p>
+   <img src="./gradient-domain/mixed_grad_eq.png" alt="" height=70>
+
+
+   <h4>Bells & Whistles: Color2Gray</h3>
+   <hr>
+ <p>The concept of Color2Gray was to improve grayscale contrast since converting an image to gray can lose
+ a lot of object distinguishing properties. At the moment, this is what a color blind test looks like when
+converted the grayscale (we lose all the information of the number). We want to implement something so that
+the contrast is kept similarly.
+<br><br>
+We accomplished this by converting the image to HSV and looking at the saturation and value. We do a similar process
+as Poisson blending but taking into account these parameters. Because it took a long time to process, we rescaled the images down.
+ </p>
+<div class="row">
+    <figure>
+      <img src="./gradient-domain/colorBlindTest35_gray.png" alt="" height=170><figcaption>Color blind test (color)</figcaption>
+    </figure>
+    <figure>
+      <img src="./gradient-domain/colorBlindTest35.png" alt="" height=170><figcaption>Color blind test (grayscale)</figcaption>
+    </figure>
+    <figure>
+      <img src="./gradient-domain/colorblindafter.png" alt="" height=170><figcaption>Color2Gray Output</figcaption>
+    </figure>
+
+  </div>
+
+
+  <div class="row">
+    <button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>
+    <button type="button" name="button"><a href="./image_quilting.html">Image Quilting</a></button>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="stylesheet.css" rel=stylesheet>
+
+    <title>CS194 Final Project</title>
+  </head>
+  <body>
+    <h1>CS194 Final Project</h1>
+    <p>Intro to Computer Vision & Computational Photography: <b>Anderson Lam, Amy Huang</b></p>
+    <div class="row">
+      <button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>
+      <button type="button" name="button"><a href="./image_quilting.html">Image Quilting</a></button>
+      <button type="button" name="button"><a href="./gradient.html">Gradient Domain Fusion</a></button>
+    </div>
+    <h2>Image Quilting</h2>
+    <p><b>Overview:</b> Our goal for this project was to implement an image quilting algorithm to
+    perform texture synthesis and transfer. For <em>texture synthesis</em>, we generate a larger
+    image given a smaller texture sample, while <em>texture transfer</em> refers to transferring a shape
+    of one object onto a texture by overlapping patterns.</p>
+<h3>Texture Synthesis</h3>
+<hr>
+
+    <h4>Randomly Sampled Texture</h4>
+    <p>We started by creating the function <code>quilt_random(sample, outsize, patchsize)</code> which
+    samples a small patch from a given image and tiles the patch into a larger image. Here is the
+   result on the given image set.</p>
+    <center>
+    <div class="row">
+      <figure>
+        <img src="./image_quilting/bricks_random.png" height=200/>
+      </figure>
+      <figure>
+        <img src="./image_quilting/text_random.png"  height=200/>
+      </figure>
+      <figure>
+        <img src="./image_quilting/green.png"  height=200/>
+      </figure>
+    </div>
+    </center>
+    <p>As you can see, the images do not look like a uniform texture but rather a tiling of small patches.
+  </p>
+  <h4>Overlapping Patches</h4>
+  <p>Next, we implement the method <code>quilt_simple(sample, outsize, patchsize, overlap, tol)</code>
+    for autoregressive sampling. We calculate the cost as the SSD between the overlapping patch of the existing
+    and generated image. To filter through a given tolerance, we are able to find lower costs using the formula <code>[y, x] = find(cost< minc*(1+tol)) </code>
+    We ended up using a tolerance threshold of 0.3 </p>
+  <center>
+  <div class="row">
+    <figure>
+      <img src="./image_quilting/bricksimple.png" height=200/>
+    </figure>
+    <figure>
+      <img src="./image_quilting/textsimple.png"  height=200/>
+    </figure>
+    <figure>
+      <img src="./image_quilting/greensimple.png"  height=200/>
+    </figure>
+  </div>
+  </center>
+  <p>Although up close you can tell the different patches, there is now more variance in the texture.
+  </p>
+  <h4>Seam Finding</h4>
+  <p>Next, we use <em>seam finding</em> to eliminate edge artifacts from the overlapping patches.
+  This is done by using a min-cost algorithm with dynamic programming. We use the min-cost path to create
+  a mask in order to find which pixels to overlap. Here is the result:</p>
+  <div class="row">
+    <figure>
+      <img src="./image_quilting/brickseam.png" height=200/>
+    </figure>
+    <figure>
+      <img src="./image_quilting/textseam.png"  height=200/>
+    </figure>
+    <figure>
+      <img src="./image_quilting/greenseam.png"  height=200/>
+    </figure>
+  </div>
+  <h3>Texture Transfer</h3>
+  <hr>
+<p>For texture transfer, we use our <code>quilt_cut</code> function to guide the texture cuts by using
+ a reference image. We use an alpha value to multiply the weight of the cost between SSD of the patch and the
+target patch of the reference image. Here are the resulting images: </p>
+
+
+<h3>Bells & Whistles: Iterative Texture Transfer</h3>
+<hr>
+<p>For texture transfer, we use our <code>quilt_cut</code> function to guide the texture cuts by using
+a reference image. We use an alpha value to multiply the weight of the cost between SSD of the patch and the
+target patch of the reference image. Here are the resulting images: </p>
+
+<div class="row">
+<button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>
+<button type="button" name="button"><a href="./gradient.html">Gradient Domain Fusion</a></button>
+</div>
+  </body>
+</html>
