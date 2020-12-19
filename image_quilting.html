@@ -85,8 +85,9 @@
       <img src="./image_quilting/whiteseam.png"  height=200/>
     </figure>
   </div>
-  <p><b>Overlapping Min-cut Illustrations</b> </p>
-
+  <p><b>Overlapping Min-cost Illustrations</b> </p>
+    <p> This min cost procedure is really just find our path that best aligns the two patches. We do this by computing the SSD of the patches and then run it 
+    thought our DP algorithm, where we loop through our errors until we can get the lowest errors for the indicies.</p>
   <div class="row">
     <figure>
       <img src="./image_quilting/min/compare/else/patch1.png" height=100/><figcaption>Previous Patch</figcaption>
@@ -101,7 +102,7 @@
       <img src="./image_quilting/min/compare/else/ssd2.png"  height=100/><figcaption>Cost (SSD)</figcaption>
     </figure>
     <figure>
-      <img src="./image_quilting/min/compare/else/res.png"  height=100/><figcaption>Min Cut Result</figcaption>
+      <img src="./image_quilting/min/compare/else/res.png"  height=100/><figcaption>Min Cost Path Result</figcaption>
     </figure>
     <figure>
       <img src="./image_quilting/min/compare/else/removed.png"  height=100/><figcaption>Min Cut Result</figcaption>
@@ -110,11 +111,35 @@
       <img src="./image_quilting/min/compare/else/after.png"  height=100/><figcaption>Result</figcaption>
     </figure>
   </div>
+    
+   <p><b>More Examples</b> </p>
+     <div>
+        <figure>
+      <img src="./image_quilting/skyR.png"  height=100/><figcaption>Sky Random</figcaption>
+    </figure>
+               <figure>
+      <img src="./image_quilting/skyO.png"  height=100/><figcaption>Sky Overlap</figcaption>
+    </figure>
+               <figure>
+      <img src="./image_quilting/skyS.png"  height=100/><figcaption>Sky Seam</figcaption>
+    </figure>
+       <br>
+    <figure>
+      <img src="./image_quilting/flowerR.png"  height=100/><figcaption>Flowers Random</figcaption>
+    </figure>
+          <figure>
+      <img src="./image_quilting/flowerO.png"  height=100/><figcaption>Flowers Overlap</figcaption>
+    </figure>
+          <figure>
+      <img src="./image_quilting/flowerS.png"  height=100/><figcaption>Flowers Seam</figcaption>
+    </figure>
+     </div>
   <h3>Texture Transfer</h3>
   <hr>
 <p>For texture transfer, we use our <code>quilt_cut</code> function to guide the texture cuts by using
  a reference image. We use an alpha value to multiply the weight of the cost between SSD of the patch and the
-target patch of the reference image. Here are the resulting images: </p>
+target patch of the reference image. Like the quilt_cut function, we want to find some best patch and then utilize our min cost function to blend the patches. 
+  This is different than min cost as we have a texture patch and goal/target patch. We compute the SSD between these two patches to get the correct looking texture. Here are the resulting images: </p>
 
 <center>
 <div class="row">
