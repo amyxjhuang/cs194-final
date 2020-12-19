@@ -59,7 +59,7 @@
   <ol>
     <li>
       Select source and target boundaries and translate the object to the correct
-      location in the target.
+      location in the target (using the given starter code).
     </li>
     <li> Use the following formula for finding blending constraints:
       <img src="./gradient-domain/poissonblend_eq.png" height=70/>
@@ -135,7 +135,8 @@
 <p>We implemented mixed gradient to improve blending by doing a similar procedure as Poisson blending
    using the following formula</p>
    <img src="./gradient-domain/mixed_grad_eq.png" alt="" height=70>
-   <p>Overall, this helped make the results look more realistic.</p>
+   <p>It's interesting to see how this simple mixed
+     gradient could improve our results with comparison of the source and target values. Overall, this helped make the results look more realistic.</p>
    <div class="row">
 
        <figure>
@@ -226,6 +227,15 @@ as Poisson blending but taking into account these parameters. Because it took a 
       </figure>
 
     </div>
+
+
+    <p><b>Summary:</b> This project was very interesting and show me a lot
+    about how math and matrices work with respect to images. This was very different
+  to how we did laplacian blending and was interesting to see other ways to blend.
+I really liked playing around with blending like in project 2! A big difficulty I had
+was really just understanding the math. The next difficulty came down to figuring out the how to solve the
+least squares problem efficently -- which was really slow in numpy/python. I had to find out which packages or procedures
+were faster than the more well know processes.</p>
 
 
   <div class="row">

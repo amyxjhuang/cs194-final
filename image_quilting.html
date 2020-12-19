@@ -67,7 +67,7 @@
   </center>
   <p>Although up close you can tell the different patches, there is now more variance in the texture.
   </p>
-  <h4>Seam Finding</h4>
+  <h4>Seam Finding / Min Cut</h4>
   <p>Next, we use <em>seam finding</em> to eliminate edge artifacts from the overlapping patches.
   This is done by using a min-cost algorithm with dynamic programming. We use the min-cost path to create
   a mask in order to find which pixels to overlap. Here is the result:</p>
@@ -83,6 +83,31 @@
     </figure>
     <figure>
       <img src="./image_quilting/whiteseam.png"  height=200/>
+    </figure>
+  </div>
+  <p><b>Overlapping Min-cut Illustrations</b> </p>
+
+  <div class="row">
+    <figure>
+      <img src="./image_quilting/min/compare/else/patch1.png" height=100/><figcaption>Previous Patch</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/patch2.png"  height=100/><figcaption>New Patch</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/new.png"  height=100/><figcaption>Overlap</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/ssd2.png"  height=100/><figcaption>Cost (SSD)</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/res.png"  height=100/><figcaption>Min Cut Result</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/removed.png"  height=100/><figcaption>Min Cut Result</figcaption>
+    </figure>
+    <figure>
+      <img src="./image_quilting/min/compare/else/after.png"  height=100/><figcaption>Result</figcaption>
     </figure>
   </div>
   <h3>Texture Transfer</h3>
@@ -132,7 +157,8 @@ target patch of the reference image. Here are the resulting images: </p>
 <h3>Bells & Whistles: Iterative Texture Transfer</h3>
 <hr>
 <p>This portion consisted of iteratively running through our previous algorithm.
-  We were able to achieve better results after running multiple times. Here are the outputs:</p>
+  We were able to achieve better results after running multiple times (using different
+  patchsizes, overlap, and alpha values for each iteration as described in the research paper). Here are the outputs:</p>
 <div class="row">
   <figure>
     <img src="./image_quilting/iterative2.png" height=200/><figcaption>Target Object</figcaption>
@@ -163,6 +189,13 @@ target patch of the reference image. Here are the resulting images: </p>
   </figure>
 
 </div>
+
+<p><b>Summary:</b> This project was difficult to understand early on. It took a good while to wrap my head around how
+overlapping worked and what I could do to try and solve this problem. There was a lot of variables that I ended up trying to store
+in order to properly compute where there was overlap and then finally determine the min cut path. The next part of texture transfer
+seemed intimidating at first, but was really similar to the quilt cut part. Throughout this whole process, the
+algorithms took very long to run, so if I had more time, I would definitely try to optimize the min cut and overlap algorithms. I definitely learned
+a lot more about how pictures work.</p>
 
 <div class="row">
 <button type="button" name="button" ><a href="./index.html">Lightfield Camera</a></button>
